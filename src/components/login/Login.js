@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/authContext.js";
+import GoogleIcon from '@mui/icons-material/Google';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,44 +36,54 @@ const Login = () => {
   
     return (
       <>
-        <div className="p-4 box">
-          <h2 className="mb-3">Firebase Auth Login</h2>
+        <Box
+          sx={{
+            width: 500,
+            height: 400,
+            backgroundColor: '#f1f1f1',
+            margin: '39px auto',
+            borderRadius: '4px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            padding:'0px 30px'
+          }}
+        >
+          <Typography
+            variant="h5"
+            noWrap
+            component="div"
+            sx={{ mr: 2 , fontWeight:'bolder',display: { xs: 'none', md: 'flex' } }}
+          >
+                Iniciar Sesion
+          </Typography>
           {error && <p>{error}</p>}
           <form onSubmit={handleSubmit}>
-            <div>
-              <input
-                type="email"
-                placeholder="Email address"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-  
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-  
-            <div className="d-grid gap-2">
-              <button variant="primary" type="Submit">
-                Log In
-              </button>
-            </div>
+          <Box sx={{width: 500, margin:'10px 0px'}}>
+            <TextField fullWidth label="Email" id="Email" placeholder='Email Address' onChange={(e) => setEmail(e.target.value)}/>  
+          </Box>
+          <Box sx={{width: 500, margin:'10px 0px'}}>
+            <TextField fullWidth label="Password" id="password" placeholder='Email Password' type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            />
+          </Box> 
+          <Button variant="contained" type="Submit">
+                Iniciar sesion 
+          </Button>
           </form>
+         
           <hr />
           <div>
-            <button
-              className="g-btn"
-              type="dark"
-              onClick={handleGoogleSignIn}
-            />
+          <Button variant="contained" endIcon={<GoogleIcon />} onClick={handleGoogleSignIn}>
+                Sign In with
+              </Button>
           </div>
-        </div>
-        <div className="p-4 box mt-3 text-center">
+
+          <div className="p-4 box mt-3 text-center">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </div>
+        </Box>
       </>
     );
   };

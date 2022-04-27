@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/login/Signup";
 import Home from "./components/Home/Home";
 import Navbar from "./layout/header/Navbar";
+import Login from './components/login/Login'
 function App() {
   return (
     <>
@@ -11,7 +12,7 @@ function App() {
       <Routes>
             <Route path="/" element={ <Home/>} />
             <Route path="/signUp" element={ <SignUp/>} />
-            <Route path="/home" element={ <Home/>} />
+            <Route path="/login" element={ <Login/>} />
       </Routes>
      </UserAuthContextProvider>
     </>
