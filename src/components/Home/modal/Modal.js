@@ -11,7 +11,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  backgroundImage: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
@@ -33,12 +33,14 @@ export default function ModalBienvenida() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Bienvenid@!!!
           </Typography>
+          
+          <Box sx={{ margin:'10', textAlign: 'center'}}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Hello Welcome <br />
             {user && user.displayName}
           </Typography>
+          </Box> 
         <Button variant="contained" component={Link}  onClick={handleClose}
           to="/dulceria">
             Aceptar

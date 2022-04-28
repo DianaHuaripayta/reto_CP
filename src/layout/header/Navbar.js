@@ -11,10 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from "react-router-dom";
-const settings = ['Profile', 'Logout'];
+import { Link, useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/authContext";
 
 const Navbar = () => {
+  const { logOut,user} = useUserAuth();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -31,6 +33,15 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <>
@@ -120,7 +131,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="diana" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user && user.displayName} src={user && user.photoURL} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -139,11 +150,10 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Cerrar Sesion</Typography>
+              </MenuItem>
+    
             </Menu>
           </Box>
         </Toolbar>
