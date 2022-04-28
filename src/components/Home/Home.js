@@ -16,7 +16,7 @@ export default function Home() {
         description: doc.data().description,
         image :doc.data().image,
       })
-      console.log(doc.id,'--',doc.data().description, '--',doc.data().image)
+      // console.log(doc.id,'--',doc.data().description, '--',doc.data().image)
      
     });
     setPremieres(arrayProduct)
@@ -49,34 +49,3 @@ export default function Home() {
   </>
   )
 }
-// {premieres.map((item, index) => 
-//   <ImageButton
-//     focusRipple
-//     component={Link}
-//     to="/login"
-//     key={index}
-//     style={{  
-//       width: '30%',
-//       margin: 20,
-//     }}
-//   >
-//     <ImageSrc style={{ backgroundImage: `url(${item.image})` }} />
-//     <ImageBackdrop className="MuiImageBackdrop-root" />
-//     <Image>
-//       <Typography
-//         component="span"
-//         variant="subtitle1"
-//         color="inherit"
-//         sx={{
-//           position: 'relative',
-//           p: 4,
-//           pt: 2,
-//           pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-//         }}
-//       >
-//         {item.description}
-//         <ImageMarked className="MuiImageMarked-root" />
-//       </Typography>
-//     </Image>
-//   </ImageButton>
-// )}

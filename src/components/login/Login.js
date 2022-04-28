@@ -10,7 +10,9 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [modal, setModal] = useState(false);
     const { logIn, googleSignIn } = useUserAuth();
+    
     const navigate = useNavigate();
   
     const handleSubmit = async (e) => {
@@ -18,7 +20,7 @@ const Login = () => {
       setError("");
       try {
         await logIn(email, password);
-        navigate("/dulceria");
+        navigate("/modal");
       } catch (err) {
         setError(err.message);
       }
@@ -28,7 +30,9 @@ const Login = () => {
       e.preventDefault();
       try {
         await googleSignIn();
-        navigate("/home");
+        navigate("/modal");
+        //modal
+        setModal(!modal)
       } catch (error) {
         console.log(error.message);
       }

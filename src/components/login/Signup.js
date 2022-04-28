@@ -55,7 +55,7 @@ export default function Signup() {
           <TextField fullWidth label="Password" id="password" placeholder='Email Password' type="password" onChange={(e) => setPassword(e.target.value)}/>
         </Box>
         <Box sx={{width: 500, margin:'10px 0px',  display: 'flex', justifyContent: 'center'}}>
-        <Button variant="contained" type="Submit">
+          <Button variant="contained" type="Submit">
             Resgistrate
           </Button>
         </Box>
