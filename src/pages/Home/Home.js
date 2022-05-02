@@ -32,6 +32,7 @@ export default function Home() {
             variant="h5"
             noWrap
             component="div"
+            color='primary'
             sx={{ margin: '30px 50px', fontWeight:'bolder', display: { xs: 'none', md: 'flex' } }}
           >
             Premieres

@@ -1,13 +1,15 @@
 
 import { Routes, Route } from "react-router-dom";
-import SignUp from "./components/login/Signup";
-import Home from "./components/Home/Home";
+import SignUp from "./pages/login/Signup";
+import Home from "./pages/Home/Home";
 import Navbar from "./layout/header/Navbar";
-import Login from './components/login/Login';
-import Dulceria from './components/dulceria/Dulceria'
-import ModalBienvenida from "./components/Home/modal/Modal";
+import Login from './pages/login/Login';
+import Dulceria from './pages/dulceria/Dulceria'
+import ModalBienvenida from "./pages/Home/modal/Modal";
 import ProtectedRoute from './components/ProtecedRoute'
 import { useUserAuth } from "./context/authContext";
+import {  ThemeProvider } from '@mui/material/styles';
+import theme from "./styles/theme";
 
 function App() {
   const { user } = useUserAuth();
@@ -16,18 +18,20 @@ function App() {
   }
   return (
     <>
-      <Navbar></Navbar>
-      <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/signUp" element={ <SignUp/>} />
-            <Route path="/login" element={ <Login/>} />
-            <Route path="/dulceria" element={
-               <ProtectedRoute>
-                  <Dulceria/>
-              </ProtectedRoute>
-               } />
-            <Route path="/modal" element={ <ModalBienvenida/>} />
-      </Routes>
+     <ThemeProvider theme={theme}>
+      <Navbar/>
+        <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/signUp" element={ <SignUp/>} />
+              <Route path="/login" element={ <Login/>} />
+              <Route path="/dulceria" element={
+                <ProtectedRoute>
+                    <Dulceria/>
+                </ProtectedRoute>
+                } />
+              <Route path="/modal" element={ <ModalBienvenida/>} />
+        </Routes>
+     </ThemeProvider>
     </>
   );
 }

@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/authContext.js";
+import { useForm } from "react-hook-form";
+import { errorsFirebase } from "../../utils/errorsFirebase";
+import { FormValidate } from "../../utils/FormValidate.js";
+
+
 import GoogleIcon from '@mui/icons-material/Google';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import FormError from '../../components/FormError'
+import FormInput from "../../components/FormInput.jsx";
+import ButtonComponent from "../../components/ButtonComponent.jsx";
+
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
     const [modal, setModal] = useState(false);
     const { logIn, googleSignIn } = useUserAuth();
     
     const navigate = useNavigate();
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError("");
-      try {
-        await logIn(email, password);
-        navigate("/modal");
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-  
+    const {required, patternEmail, minLength, validateTrim} = FormValidate()
+    const { 
+      register, 
+      handleSubmit, 
+      setError,
+      formState: { errors } } = useForm();
+    
+      const onSubmit = async ({ email, password }) => { //react hook form get data firebase
+        console.log(email, password);
+        try {
+            await logIn(email, password);
+            console.log("Usuario creado");
+            navigate("/dulceria");
+        } catch (error) {
+          const { code, message } = errorsFirebase(error);
+          setError(code, { message });
+        }
+    };  
     const handleGoogleSignIn = async (e) => {
       e.preventDefault();
       try {
@@ -62,19 +73,42 @@ const Login = () => {
           >
                 Iniciar Sesion
           </Typography>
-          {error && <p>{error}</p>}
-          <form onSubmit={handleSubmit}>
+          <FormError error={errors.firebase}/>
+          <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{width: 500, margin:'10px 0px'}}>
-            <TextField fullWidth label="Email" id="Email" placeholder='Email Address' onChange={(e) => setEmail(e.target.value)}/>  
+          <FormInput 
+            fullWidth   
+            label="Email" 
+            id="Email" 
+            placeholder='paola@gmail.com' 
+            {...register("email", {
+              required,
+              pattern: patternEmail,
+          })}
+          />
+
+           <FormError error={errors.email}/> 
           </Box>
           <Box sx={{width: 500, margin:'10px 0px'}}>
-            <TextField fullWidth label="Password" id="password" placeholder='Email Password' type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            />
+          <FormInput 
+            fullWidth 
+            label="Contraseña" 
+            id="password" 
+
+            placeholder='contraseña' 
+            type="password" 
+            {...register('password',{
+              minLength,
+              validate: validateTrim,
+            })}/>
+            <FormError error={errors.password}/>
           </Box> 
-          <Button variant="contained" type="Submit">
+          {/* <Button variant="contained" type="Submit">
                 Iniciar sesion 
-          </Button>
+          </Button> */}
+          <ButtonComponent variant="contained" type="Submit">
+            Iniciar sesion 
+          </ButtonComponent>
           </form>
          
           <hr />

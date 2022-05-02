@@ -45,14 +45,14 @@ const Navbar = () => {
   };
   return (
     <>
-     <AppBar position="static">
+     <AppBar position="static" sx={{background:'#fafaff'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            color='primary'
+            sx={{ mr: 2,fontWeight:'bolder', display: { xs: 'none', md: 'flex' } }}
           >
             CINEPLANET
           </Typography>
@@ -114,7 +114,8 @@ const Navbar = () => {
               component={Link}
               to="/"
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                color="primary"
+                sx={{ my: 2, display: 'block' }}
               >
                 Home
               </Button>
@@ -122,7 +123,8 @@ const Navbar = () => {
                component={Link}
                to="/dulceria"
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                color="primary"
+                sx={{ my: 2, display: 'block' }}
               >
                 Dulceria
               </Button>
