@@ -5,11 +5,9 @@ import { useForm } from "react-hook-form";
 import { errorsFirebase } from "../../utils/errorsFirebase";
 import { FormValidate } from "../../utils/FormValidate.js";
 
-
 import GoogleIcon from '@mui/icons-material/Google';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import FormError from '../../components/FormError'
 import FormInput from "../../components/FormInput.jsx";
 import ButtonComponent from "../../components/ButtonComponent.jsx";
@@ -53,8 +51,8 @@ const Login = () => {
       <>
         <Box
           sx={{
-            width: 500,
-            height: 400,
+            width: 600,
+            height: 500,
             backgroundColor: '#f1f1f1',
             margin: '39px auto',
             borderRadius: '4px',
@@ -75,7 +73,7 @@ const Login = () => {
           </Typography>
           <FormError error={errors.firebase}/>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{width: 500, margin:'10px 0px'}}>
+          <Box sx={{width: 500, padding:'30px 0px 0px'}}>
           <FormInput 
             fullWidth   
             label="Email" 
@@ -84,44 +82,44 @@ const Login = () => {
             {...register("email", {
               required,
               pattern: patternEmail,
-          })}
+            })}
+            error={errors.email}
           />
 
            <FormError error={errors.email}/> 
           </Box>
-          <Box sx={{width: 500, margin:'10px 0px'}}>
-          <FormInput 
-            fullWidth 
-            label="Contraseña" 
-            id="password" 
+          <Box sx={{width: 500, padding:'30px 0px 0px'}}>
+            <FormInput  
+              fullWidth 
+              label="Contraseña" 
+              id="password" 
 
-            placeholder='contraseña' 
-            type="password" 
-            {...register('password',{
-              minLength,
-              validate: validateTrim,
-            })}/>
+              placeholder='contraseña' 
+              type="password" 
+              {...register('password',{
+                minLength,
+                validate: validateTrim,
+              })}
+              error={errors.password}//mui
+            />
             <FormError error={errors.password}/>
-          </Box> 
-          {/* <Button variant="contained" type="Submit">
-                Iniciar sesion 
-          </Button> */}
-          <ButtonComponent variant="contained" type="Submit">
-            Iniciar sesion 
-          </ButtonComponent>
-          </form>
-         
-          <hr />
-          <div>
-          <Button variant="contained" endIcon={<GoogleIcon />} onClick={handleGoogleSignIn}>
-                Sign In with
-              </Button>
-          </div>
+          </Box>
+          <Box sx={{width: 500, marginTop:'20px',  display: 'flex', justifyContent: 'center'}}>
+            <ButtonComponent variant="contained" type="Submit">
+            Iniciar Sesión
+            </ButtonComponent>
+          </Box>
 
-          <div className="p-4 box mt-3 text-center">
-          Don't have an account? <Link to="/signup">Sign up</Link>
-        </div>
+          </form>
+          <ButtonComponent variant="outlined" endIcon={<GoogleIcon />} onClick={handleGoogleSignIn}>
+                Sign In with
+          </ButtonComponent>
+          <Box sx={{width: 500, marginTop:'20px',  display: 'flex', justifyContent: 'center'}}>
+            Crear nueva cuenta_<Link to="/signup">Registrar</Link>
+          </Box>
         </Box>
+
+         
       </>
     );
   };

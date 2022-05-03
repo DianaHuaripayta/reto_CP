@@ -7,9 +7,9 @@ import { FormValidate } from "../../utils/FormValidate";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import FormError from '../../components/FormError'
 import FormInput from '../../components/FormInput'
+import ButtonComponent from '../../components/ButtonComponent'
 
 export default function Signup() {
   const {required, patternEmail, minLength, validateTrim, validateEquals} = FormValidate()
@@ -41,7 +41,7 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
        <Box
           sx={{
             width: 500,
-            height: 700,
+            height: 620,
             backgroundColor: '#f1f1f145',
             margin: '39px auto',
             borderRadius: '4px',
@@ -56,6 +56,7 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
             variant="h5"
             noWrap
             component="div"
+            colot='primary'
             sx={{ mr: 2 , fontWeight:'bolder',display: { xs: 'none', md: 'flex' } }}
           >
                 Registrate
@@ -63,9 +64,10 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
          
         <form onSubmit={handleSubmit(onSubmit)}>
         <FormError error={errors.firebase}/>
-        <Box sx={{width: 500, margin:'10px 0px'}}>
+
+        <Box sx={{width: 500, padding:'30px 0px 0px'}}>
           <FormInput 
-            fullWidth 
+            fullWidth   
             label="Nombre"  
             placeholder='Paola Sonia' 
             {...register('name', { 
@@ -74,10 +76,11 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
                 message: "Campo obligatorio",
               }
             })}
+            error={errors.name}
             />
-             <FormError error={errors.name}/>
         </Box>
-        <Box sx={{width: 500, margin:'10px 0px'}}>
+        <FormError error={errors.name}/>
+        <Box sx={{width: 500, padding:'30px 0px 0px'}}>
           <FormInput 
             fullWidth   
             label="Email" 
@@ -86,13 +89,12 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
             {...register("email", {
               required,
               pattern: patternEmail,
-          })}
+            })}
+            error={errors.email}
           />
-           <FormError error={errors.email}/>
-           {/* esta manera */}
-
         </Box>
-        <Box sx={{width: 500, margin:'10px 0px'}}>
+        <FormError error={errors.email}/>
+        <Box sx={{width: 500, padding:'30px 0px 0px'}}>
           <FormInput 
           fullWidth 
           label="Contraseña" 
@@ -103,11 +105,12 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
           {...register('password',{
             minLength,
             validate: validateTrim,
-          })}/>
-          <FormError error={errors.password}/>
-          {/* esta manera */}
+          })}
+          error={errors.password} //mui
+          />
         </Box>
-        <Box sx={{width: 500, margin:'10px 0px'}}>
+        <FormError error={errors.password}/>
+        <Box sx={{width: 500, padding:'30px 0px 0px'}}>
           <FormInput 
           fullWidth 
           label="Confirmar Contraseña" 
@@ -115,19 +118,22 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
           type="password" 
           {...register('repassword',{
             validate: validateEquals(getValues('password')),
-          })}/>
-           <FormError error={errors.repassword}/>
+          })}
+          />
         </Box>
-     
-        <Box sx={{width: 500, margin:'10px 0px',  display: 'flex', justifyContent: 'center'}}>
-          <Button variant="contained" type="Submit">
-            Resgistrate
-          </Button>
+        <FormError error={errors.repassword}/>
+
+        <Box sx={{width: 500, marginTop:'20px',  display: 'flex', justifyContent: 'center'}}>
+          <ButtonComponent variant="contained" type="submit">
+            Registrarte
+          </ButtonComponent>
         </Box>
+
         </form>
-        <div >
-        Already have an account? <Link to="/logIn">Log In</Link>
-      </div>
+        
+        <Box sx={{width: 500,  display: 'flex', justifyContent: 'center'}}>
+          Iniciar sesión_<Link to="/logIn"> Aquí</Link>
+        </Box>
       </Box>
     </>
   )

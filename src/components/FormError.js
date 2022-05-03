@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-const ErrorMessageStyled = styled.p`
+const ErrorMessageStyled = styled.div`
+  margin-top: 10px;
   color: #d82725;
 `;
 const FormError = ({error}) => {
