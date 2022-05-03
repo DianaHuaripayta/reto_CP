@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/authContext";
 import { useForm } from "react-hook-form";
 import { errorsFirebase } from "../../utils/errorsFirebase";
 import { FormValidate } from "../../utils/FormValidate";
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import FormError from '../../components/FormError'
@@ -55,7 +54,7 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
             variant="h5"
             noWrap
             component="div"
-            colot='primary'
+            color='primary'
             sx={{ mr: 2 , fontWeight:'bolder',display: { xs: 'none', md: 'flex' } }}
           >
                 Registrate
