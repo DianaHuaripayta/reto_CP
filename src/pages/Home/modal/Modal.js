@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Link } from "react-router-dom";
 import { useUserAuth } from "../../../context/authContext";
+
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -20,7 +22,7 @@ const style = {
 export default function ModalBienvenida() {
   const { user } = useUserAuth();
   const [open, setOpen] = React.useState(true);
-  //const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
 
   return (

@@ -5,16 +5,16 @@ import Home from "./pages/Home/Home";
 import Navbar from "./layout/header/Navbar";
 import Login from './pages/login/Login';
 import Dulceria from './pages/dulceria/Dulceria'
-import ModalBienvenida from "./pages/Home/modal/Modal";
 import ProtectedRoute from './components/ProtecedRoute'
 import { useUserAuth } from "./context/authContext";
 import {  ThemeProvider } from '@mui/material/styles';
+import ProgressCircular from './components/Progress'
 import theme from "./styles/theme";
 
 function App() {
   const { user } = useUserAuth();
   if (user === false) {
-    return <p>Loading ....</p>
+    return <ProgressCircular/>
   }
   return (
     <>
@@ -29,7 +29,6 @@ function App() {
                     <Dulceria/>
                 </ProtectedRoute>
                 } />
-              <Route path="/modal" element={ <ModalBienvenida/>} />
         </Routes>
      </ThemeProvider>
     </>

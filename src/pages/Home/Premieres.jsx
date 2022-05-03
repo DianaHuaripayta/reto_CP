@@ -5,6 +5,7 @@ import {ImageButton, ImageSrc, Image, ImageBackdrop, ImageMarked} from './premie
 import { Link } from "react-router-dom";
 const Premieres = ({ film }) => {
     const { id, description,image } = film;
+    
   return (
     <>
     <Box sx={{ margin:'10px'}}>

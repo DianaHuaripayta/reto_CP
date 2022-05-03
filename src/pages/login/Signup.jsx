@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../context/authContext";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,6 @@ const onSubmit = async ({ email, password }) => { //react hook form get data fir
       console.log(email, password);
       try {
           await signUp(email, password);
-          console.log("Usuario creado");
           navigate("/dulceria");
       } catch (error) {
         const { code, message } = errorsFirebase(error);
