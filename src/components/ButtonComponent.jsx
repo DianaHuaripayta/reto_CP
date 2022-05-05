@@ -1,9 +1,12 @@
 import React from 'react'
 import Button from '@mui/material/Button';
+import { ButtonLoading } from './ButtonLoading';
 
-const ButtonComponent = ({children, color, disabled, size, variant, sx, endIcon, onClick, type}) => {
+const ButtonComponent = ({children, color, disabled, size, variant, sx, endIcon, onClick, type, loading}) => {
+  if(loading) return <ButtonLoading/>
+  
   return (
-    <Button children={children} 
+    <Button 
     color={color}
     disabled={disabled}
     size={size}
@@ -12,7 +15,9 @@ const ButtonComponent = ({children, color, disabled, size, variant, sx, endIcon,
     endIcon={endIcon}
     onClick={onClick}
     type={type}
-    />
+    >
+      {children}
+    </Button>
   )
 }
 export default ButtonComponent

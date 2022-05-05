@@ -15,7 +15,6 @@ import ButtonComponent from "../../components/ButtonComponent.jsx";
 
 const Login = () => { 
     const { logIn, googleSignIn } = useUserAuth();
-   
     const navigate = useNavigate();
     const {required, patternEmail, minLength, validateTrim} = FormValidate()
     const { 
