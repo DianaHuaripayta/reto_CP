@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState} from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
 import ButtonComponent from '../../components/ButtonComponent'
+import ProgressCircular from '../../components/Progress'
 
 export const CandyStore = () => {
     const [text, setText] = useState('')
@@ -11,7 +13,7 @@ export const CandyStore = () => {
         getData()
       },[])
 
-    if(loading.getData) return <p>loading... GET DATA</p>
+    if(loading.getData) return <ProgressCircular/>
     if (error) return <p>{error}</p>
 
     const handleSubmit = async(e) => {
